@@ -1,0 +1,18 @@
+Aula 4 - 26/03/2026
+
+ambiente de exercício
+felipebherve@gmail.com
+senha padrão
+>>> meus cursos
+
+base de exercício
+
+f"R$ {variavel:.2f}"
+formatação de variável
+
+(f"""
+{x>y and y>z}
+""")
+e
+
+

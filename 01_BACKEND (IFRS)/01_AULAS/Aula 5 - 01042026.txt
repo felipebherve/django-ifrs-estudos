@@ -1,0 +1,68 @@
+Aula 5 - 01/04/2026
+
+relembrando
+print()
+input()
+type()
+\n = enter
+dir() = mostra tudo que pode fazer
+
+tipos básicos
+int()			+,-,/,*,//,**,%
+float()			>,<,>=,<=
+bool()			==, !=, ===, !==
+str			
+
+
+
+str(variável) in "123489"
+"15678654".find(str(variável))
+
+valor // 4 = 1 ou 0
+valor % 4 = v1
+v1 // 2 = 1 ou 0
+v1 % 2 = 1 ou 0
+
+not ( parâmetros )
+se for diferente dos parâmetros passados
+
+"maior de idade" * (idade >= 18) + "menor de idade" * (idade < 18)
+
+preco = 1000
+desconto = 0.15
+cupom = "especial"
+desconto * (cupom.find("especial") != -1
+
+cupom = "fnsdjkfnlakdsfmlespecialfsdjfnalk"
+desconto * (cupom.find("especial") != -1
+true
+desconto * (cupom.find("descontao") != -1
+false
+
+tem desconto = desconto *(cupom.find("especial") != -1
+
+preco_final = preco - (tem desconto * preco)
+
+
+fatiamento de string
+a = "professor"
+0=p 1=r 2=o....
+a[6] = s
+type(a[1]) string
+a[2:5]
+'ofe'
+a[2:]
+ofessor
+a[:6]
+'profes'
+a[::]
+professor
+a[::2]
+poesr
+a[::-1]
+'rosseforp'
+a[::-2]
+rseop
+
+texto.replace(" ", "_") troca todos os espaços por _
+

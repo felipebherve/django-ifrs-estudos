@@ -1,0 +1,15 @@
+Aula 13.08.26 - aula final
+
+ws = websystem
+C
+R
+U
+D
+S
+
+1º	MODEL
+2º	MANAGER
+3º	SERIALIZER
+4º	URL/URI
+5º	CLASSES AUXILIARES
+6º	VIEW

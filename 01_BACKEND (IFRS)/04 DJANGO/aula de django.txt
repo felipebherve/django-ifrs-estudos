@@ -1,0 +1,311 @@
+criar projeto, custom
+abrir terminal
+pip install django
+import django
+django.VERSION
+
+django-admin
+
+IMPORTE AS PASTAS DO DJANGO
+
+django-admin startproject "gremio"
+
+web framework
+
+(NA PASTA CRIADA)-----------------------------------------
+py manage.py makemigrations  (cria as migrações)
+py manage.py migrate (executa as migrações)
+py manage.py createsuperuser
+
+gremio> py manage.py runserver
+
+
+ctrlc para terminal
+
+
+---- primeira pasta web system
+	segunda pasta app
+
+manage.py ------ gerente do projeto
+asgi ---- conexões assíncronas (peço e vou fazer outra coisa)
+wsgi ---- síncrono (web socket)
+url - localizador de recursos uniformes (caminho)
+settings --- configurações
+
+NO ARQUIVO SETTINGS ALTERAR ------------------------------
+settings
+LANGUAGE_CODE = 'pt-br'
+
+TIME_ZONE = 'America/Sao_Paulo'
+
+
+FERRAMENTA DE GERENCIAMENTO DO PROJETO
+
+CRIANDO AS FUNCIONALIDADES ------------------- APP
+
+python3 manage.py startapp aula (NO MAC)
+py manage.py startapp clube    <<<<<<<<<<< CRIANDO APP
+
+NO SETTINGS
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'clube'  			<<<<<<<<<<<< COLOCAR O NOME DO APP
+]
+
+
+APAGAR >> models.py em clube
+
+>>new>python package
+CRIAR NOVO >> models dentro de clube
+criar python file base.py
+
+dentro de base
+""""""""""""""""""""""""""""""""""
+from django.db import models
+
+
+class BaseModel(models.Model):
+    class Meta:
+        abstract = True
+        app_label = 'clube'
+""""""""""""""""""""""""""""""""""
+
+dentro do __init__.py (criar arquivo dentro de models)
+
+'''''''''''''''''''''''''''''''''
+from.base import *
+'''''''''''''''''''''''''''''''''
+
+NA PASTA MODELS, NOVO ARQUIVO.PY
+escolhido jogador.py
+''''''''''''''''''''''''''''''''
+from from clube import BaseModel
+
+class Jogador(BaseModel)
+''''''''''''''''''''''''''''''''
+
+framework ORM mapeamento de classe para registro no banco
+
+NO __INIT__.PY (do models)
+adicionar 
+'''''''''''''''''
+from  .jogador import *
+'''''''''''''''''''''
+
+no jogador.py  (criando os aributos da classe)
+''''''''''''''''''''''''''''''''
+from clube import BaseModel
+
+from django.db import models
+
+class Jogador(BaseModel)
+    titulo = models.CharField(max_length=100,)    
+***** toda classe deve ser criada aqui, agora para dizer que é uma string deve-se usar models.CharField(max_length= quantidade de caracteres desejados)
+''''''''''''''''''''''''''''''''
+
+
+
+
+
+em admin.py
+
+__________________________________________________
+from django.contrib import admin
+from clube.models import Jogador, Carro, Veiculo
+
+# Register your models here.
+admin.site.register(Jogador)
+admin.site.register(Carro)
+admin.site.register(Veiculo)
+__________________________________________________
+
+no terminal ---------------------------
+py manage.py makemigrations
+(+ Create model Jogador)
+py manage.py migrate
+Applying clube.0001_initial... OK
+py manage.py runserver
+___________________________________________
+
+
+
+no jogador.py (adicionando validadores)
+----------------------------------------------------
+from django.core.validators import MinLengthValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)])
+
+    def __str__(self):
+        return self.titulo
+---------------------------------------------------
+
+no terminal
+______________________________
+py manage.py makemigrations
+py manage.py migration
+py manage.py runserver     
+_____________________________
+no jofador.py
+'''''''''''''''''''''''''''''''
+from django.core.validators import MinLengthValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)],
+                              verbose_name='Titulo do jogador',
+                              help_text='O titulo deve conter pelomenos 5 e maximo 100'
+                              )
+    descricao = models.CharField(max_length= 5000,
+                                 blank=True, null=True,  #deixar a variável opcional
+                                 validators=[MinLengthValidator(10)],
+                                 verbose_name='Descrição',
+                                 help_text='Informe a descrição do exemplo com no minimo 10 caracteres e maximo 5000, essa descrição ficará disponível para o usuário.')
+
+    def __str__(self):
+        return self.titulo
+'''''''''''''''''''''''''''''''''''''''
+no terminal
+______________________________
+py manage.py makemigrations
+py manage.py migration
+py manage.py runserver     
+_____________________________
+
+alteração no jogador.py
+'''''''''''''''''''''''''''''''
+from django.core.validators import MinLengthValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)],
+                              verbose_name='Titulo do jogador',
+                              help_text='O titulo deve conter pelomenos 5 e maximo 100'
+                              )
+    descricao = models.TextField(max_length= 5000,
+                                 blank=True, null=True,  #deixar a variável opcional
+                                 validators=[MinLengthValidator(10)],
+                                 verbose_name='Descrição',
+                                 help_text='(OPCIONAL) Informe a descrição do exemplo com no minimo 10 caracteres e maximo 5000, essa descrição ficará disponível para o usuário.')
+
+    def __str__(self):
+        return self.titulo
+'''''''''''''''''''''''''''''''''''''''
+
+adição no jogador.py
+'''''''''''''''''''''''''''''''''''''''''
+from wsgiref.validate import validator
+
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)],
+                              verbose_name='Titulo do jogador',
+                              help_text='O titulo deve conter pelomenos 5 e maximo 100'
+                              )
+
+    descricao = models.TextField(max_length= 5000,
+                                 blank=True, null=True,  #deixar a variável opcional
+                                 validators=[MinLengthValidator(10)],
+                                 verbose_name='🧛Descrição🧛',
+                                 help_text='(OPCIONAL) Informe a descrição do exemplo com no minimo 10 caracteres e maximo 5000, essa descrição ficará disponível para o usuário.')
+
+    qualidade = models.IntegerField(default=0,
+                                    validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                    verbose_name='Qualidade',
+                                    help_text='A qualidade do exemplo deve estar entre 0 e 100'
+                                    )
+    def __str__(self):
+        return self.titulo
+
+    class Meta:
+        verbose_name_plural = '🤾🏻‍♂️Jogadores🤾🏻‍♂️'
+''''''''''''''''''''''''''''''''''''''''
+
+
+para modificar o plural 
+_______________________________________
+    class Meta:
+        verbose_name_plural = "Passagens"
+________________________________________
+
+
+
+
+
+
+
+
+
+apagando arquivos do banco (apenas caso você apague o db.sqlite3 sem querer):
+deletar >>>>>>> db.sqlite3
+deletar >>>>>>> pasta migrations
+
+no terminal
+_______________
+py manage.py makemigrations clube
+py manage.py migrate
+py manage.py createsuperuser
+________________
+
+
+
+adicionando um novo objeto:
+criar o arquivo py em models
+importar no __init__
+importar no admin
+
+
+py manage.py makemigrations
+py manage.py migrate
+py manage.py runserver
+
+
+Criando escolhas de opções:
+criar pasta enumerations
+
+exemplo:
+criar arquivo py com o nome das opções
+---------------------------------------------
+from django.db import models
+
+class Cor(models.IntegerChoices):
+    AZUL = 1, 'Azul'
+    PRETO = 2, 'Preto'
+    BRANCO = 3, 'Branco'
+---------------------------------------------
+
+no arquivo py dentro de models
+ex carro.py
+--------------------------------------------
+from clube.enumerations import Marca, Cor
+--------------------------------------------
+
+
+criando validadores
+
+criar pasta dentro da pasta do app validators
+criar arquivo __init__.py
+criar arquivo functions.py
+
+
+
+
+
+https://docs.djangoproject.com/en/6.0/ref/models/fields/

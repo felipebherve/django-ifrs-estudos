@@ -1,0 +1,148 @@
+Aula 7 - 04.22.2026
+
+estruturas de repetição
+
+Quando encerra?
+
+condicional
+pré teste / pós teste
+incondicional
+pré teste/pós teste
+objetos iteráveis
+
+
+
+--------------------------------------------------------- LAÇO CONDICIONAL
+~~~~~~~~~~~ CONTADOR
+while
+
+x= 0 
+
+while x <= 100:
+	print(x)
+	x = x+1
+
+conta a quantidade de execuções
+
+~~~~~~~~~~~ ACUMULADOR
+
+x = 0 
+soma = 0
+valor = int(input())
+
+while x <= 100
+	valor = int(input())
+	soma = soma + valor
+	x = x + 1
+
+print(soma)
+print(x)
+acumula valor na soma e diz quantas vezes executou no x
+
+
+
+~~~~~~~~~~~ SENTINELA
+x = 0
+soma = 0
+
+valor = 1
+while valor !=0:
+	valor=int(input(())
+	soma = soma+valor
+print(soma)
+
+quando chegar no número passado ele interrompe.
+
+x = 1
+soma = 0
+valor = 1
+while x <= 4:
+	valor = int(input())
+	soma = valor + valor
+	if valor % 2 == 0:
+		x=x+1
+
+
+gambiarra é um conselho de um anjo para uso imediato
+
+
+tabuada = 1 
+
+while tabuada <= 10:
+	n = 1
+	print('Tabuada %d" % tabuada)
+	while n <= 10:
+		print('%d x %d = %d' % (tabuada, n, tabuada *n))
+		n=n+1
+	tabuada = tabuada + 1
+
+
+ repetir = True
+
+while repetir:
+		numero = int(input('Digite um número inteiro' + / " ou  para sair: '))
+		if numero == :
+			repetir = False
+			print(f'Saindo')
+		elif numero % 2 == 0:
+			print(f'{numero} é par')
+		else: 
+			print(f'{numero} é impar')
+
+( no caso uma sentinela, permite sair quando a condição for atendida)
+
+
+
+--------------------------------------------------------- LAÇO INCONDICIONAL
+
+Quando encerra?
+Já sei quantas vezes executa?
+Primeiras e Últimas execuções devem ser executadas
+
+
+
+for x in range (0,101):
+	print(x)
+
+de 0 a 100
+
+for x in range (0,101,3):
+	print(x)
+
+de 0 a 100 de 3 em 3
+
+
+~~~~~~~aninhados
+
+for tabuada in range(1,11):
+	print('tabuada %d' % tabuada
+	for n in range(1,11):
+			print('%d x %d = %d' % (tabuada, n, tabuada * n))
+
+~~~~~~~~ Objetos interáveis
+
+nome = input('digite seu nome')
+
+for letra in nome:
+	print(letra)
+
+numero = str(input('Digite um numero'))
+
+for algarismo in numero:
+	print(int(algarismo) * 10)
+
+
+
+--------------------------------------------------------- RESUMÃO ---------------------------------------------------------
+
+condicional - while 
+(tem que ter um momento de encerrar)
+
+incondicional - for 
+(Já sabe quantas vezes executa, prestar atenção nas primeiras e ultimas execuções)
+
+objetos interaveis 'percorredor' - for(chamado de "for each")
+repete uma vez cada elemento de uma coleção
+indicado quando temos um tipo de dado que é um objeto interável
+
+

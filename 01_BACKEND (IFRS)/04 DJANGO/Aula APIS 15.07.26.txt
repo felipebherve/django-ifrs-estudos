@@ -1,0 +1,149 @@
+15.07.26 - API'S
+api
+
+cruds  create read update delete
+   c reate
+   r ead
+   u pdate
+   d elete
+li s t
+
+chamadas - padronizar - extrair informação
+
+(dados) (processamento) (retorno de objeto gerenciado)
+
+3 locais trabalháveis com a API
+
+SHELL - "Própria linha de comando do python" (terminal onde pode introduzir comandos)
+(best) (kshell) (cmd) (terminal) (sh) (djangoadmin)
+py manage.py shell
+python3 manage.py shell
+testes rápidos
+
+View - "Porta de entrada do cliente" (frontend) (nossa API) (restrições)
+
+scripts - 
+funcionalidades iniciais
+
+no terminal
+(pk = primary key
+caso nunca criada chave primaria é o id)
+
+Terminal  1
+py manage.py runserver
+
+
+Terminal 2
+py manage.py shell 
+from aula.models import Pessoa
+dir(Pessoa)
+help(Pessoa.save)
+sergio = Pessoa()
+sergio.full_clean()
+sergio.nome = 'a'
+(sergio ainda não é um objeto gerenciado ou persistido)
+
+(sergio só existe enquanto o terminal está aberto)
+
+para criar o objeto sergio no django precisa usar o método:
+save()      //////////    mas antes usar o full_clean()
+
+
+from datetime import date
+sergio.data_nascimento = date(200, 7, 9)
+sergio.cpf = "12345678901"
+sergio.nome = "Sergio Rodriguez"
+sergio.full_clean()
+sergio.save()
+((((( AGORA SERGIO É UM OBJETO GERENCIADO ))))))
+
+sergio.nome = 'Thiago Costa'
+sergio.full_clean()
+sergio.save()         ----------------------> "atualizar o nome do sergio"
+
+((( USANDO A MESMA VARIÁVEL PODEMOS CRIAR UM NOVO OBJETO GERENCIÁVEL )))
+
+sergio = Pessoa()
+sergio.nome = 'Sergio Rodriguez'
+sergio.cpf = '012345678901'
+sergio.data_nascimento = date(200,7,9)
+sergio.full_clean()
+sergio.save()
+
+
+agora para ler os dados que já estavam salvos no sistema
+
+get() - só pode retornar um objeto
+sergio = Pessoa.objects.get(cpf='0')
+sergio = Pessoa.objects.get(nome='Sergio Rodriguez')
+
+
+((para saber quantos objetos gerenciados)
+sergio.pk ----------------------------> mostra quantos objetos gerenciáveis tem em sergio
+
+sergio.delete() -----------------------> apaga o objetogerenciavel selecionado
+
+
+
+
+
+dentro da pasta do projeto (deve ficar embaixo do manage.py)
+
+script.py
+-------------------------------------------------------------------------
+import contextlib, io  # importanto a bibliotecas
+from manage import *
+
+# define que a saída será o terminal
+saida = io.StringIO  # a saída é do tipo string
+
+
+with contextlib.redirect_stdout(saida): # pega a biblioteca de contexto e redireciona a saída padrão para saída
+	main() #com essa definição executa o main
+-------------------------------------------------------------------------
+
+
+
+
+
+
+________________________________________________________
+import contextlib, io
+from manage import *
+
+# define que a saída será o terminal
+saida = io.StringIO()
+
+with contextlib.redirect_stdout(saida):
+    main()
+
+
+# a partir daqui podemos utilizar como no terminal
+
+from aula.models import Pessoa
+from datetime import date
+
+sergio = Pessoa(
+    nome = 'Sergio Anubis',
+    cpf = '01234567890',
+    data_nascimento = date(1990, 12, 31)
+)
+
+sergio.full_clean()
+sergio.save()
+
+acosta = Pessoa(
+    nome = 'Acosta Silva',
+    cpf = "00000000000",
+    data_nascimento = date(1980,5,15)
+)
+
+acosta.full_clean()
+acosta.save()
+_______________________________________________________
+
+
+no terminal abrir pasta onde está o script e digitar
+
+py script.py
+

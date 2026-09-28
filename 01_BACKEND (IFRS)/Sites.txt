@@ -1,0 +1,50 @@
+Sites
+
+https://ead.hardware.org.br/login/index.php
+http://moodle.ricardoluis.com/login/index.php
+
+para py
+https://www.python.org/
+https://pythontutor.com/python-compiler.html#mode=edit
+https://www.jetbrains.com/pycharm/
+curso py
+https://www.youtube.com/playlist?list=PLHz_AreHm4dlKP6QQCekuIPky1CiwmdI6
+
+livro py
+https://memoria.ifrn.edu.br/bitstream/handle/1044/2090/EBOOK%20-%20INTRODU%C3%87%C3%83O%20A%20PYTHON%20%28EDITORA%20IFRN%29.pdf?sequence=1&isAllowed=y
+
+cheap cheet
+https://ead.hardware.org.br/pluginfile.php/25680/mod_resource/content/1/memento-python3-en-latest.pdf   PT/BR
+https://ead.hardware.org.br/pluginfile.php/25681/mod_resource/content/1/memento-python3-en-latest.pdf   EN/US
+
+Raciocínio lógico
+https://ead.hardware.org.br/mod/page/view.php?id=3103
+
+Variáveis
+https://ead.hardware.org.br/mod/page/view.php?id=3104
+
+operadores aritiméticos
+https://ead.hardware.org.br/mod/page/view.php?id=3105
+
+operadores relacionais
+https://ead.hardware.org.br/mod/page/view.php?id=3106
+
+operadores lógicos
+https://ead.hardware.org.br/mod/page/view.php?id=3107
+
+input
+https://ead.hardware.org.br/mod/page/view.php?id=3108
+
+print
+https://ead.hardware.org.br/mod/page/view.php?id=3109
+
+string
+https://ead.hardware.org.br/mod/page/view.php?id=3110
+
+
+
+
+
+
+vs code
+https://code.visualstudio.com/

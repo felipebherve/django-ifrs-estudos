@@ -1,0 +1,82 @@
+Aula - 1 18/03/26
+problema: 1 Verbo
+Pressuposto: Estado da situação/Designação
+Contexto: Tudo que utilizo (Substantivos)
+**instruções:**1,2,3,4,5,6,7,..
+
+Exemplo 1
+
+problema: Enviar Mensagem_whatsapp
+Pressuposto: Estado da situação/Designação
+Contexto: Tudo que utilizo (Substantivos)
+instruções:
+
+Pegar CELULAR
+Apertar, BOTAODESBLOQUEIO
+
+Painel_TelaDeBloqueio
+Digitar, SENHA
+Apertar, DESBLOQUEIO
+
+Panel_AREADETRABALHO
+identificar, AplicativoWapp
+Clicar, AplicativoWapp
+
+Painel_AplicativoWpp
+Clicar, BARRADEPESQUISA
+
+Painel_TelcadoVirtual
+Digitar, DESTINATARIO
+Apertar, DESTINATARIO
+
+Painel_AreaDeMensagem
+Clicar, BARRADEMENSAGEM
+
+Painel_TecladoVirtual
+Digitar, CONTEUDODAMENSAGEM
+Enviar, MensagemWhatsapp
+
+Exemplo 2
+Problema: Trocar Parafuso, ventilador
+Pressuposto: O Ventilador está bambo por conta da caixa dele estar faltando um parafuso, já estou com ele no meu colo e só preciso fazer a troca do parafuso (só temos uma então é a Philips)
+Contexto: VENTILADOR, PARAFUSO, CHAVE, PARAFUSOVELHO
+Instruções:
+retirar  PARAFUSOVELHO
+acoplar  PARAFUSO
+pegar  CHAVE
+encaixar CHAVE
+GIRAR CHAVE
+Verificar Ventilador
+
+Exemplo 3
+Problema: Resfriar Ambiente
+Pressuposto: A kitnet está muito quente porque eu e minha família de 12 pessoas resolvemos passar as férias de verão na praia.
+Contexto: JANELAS, PORTA, GELADEIRA, VENTILADOR, FOGAO
+Instruções:
+abrir JANELAS
+abrir PORTA
+abrir Geladeira
+pegar VENTILADOR
+posicionar VENTILADOR
+ligar VENTILADOR
+identificar VENTILADOR, bambo
+Trocar Parafuso, Ventilador
+desligar FOGAO
+
+
+Exemplo 4
+Problema: Evacuar Kitnet
+Pressuposto: A quantidade de de pessoas foi demais para o dono da kitnet e mandou evacuar imediatamente as pessoas de dentro.
+Contexto: DONOKITNET, FAMILIA, ESCADA, COMUNICADO, MALAS, PORTA, MAE, REMEDIO, DESPEJO, AMBIENTE, MAEESTAMAL
+Instrução:
+1 informar FAMILIA
+2 falar COMUNICADO, DESPEJO
+3 amparar FAMILIA
+4 verificar MAE
+5 alerta MAEESTAMAL
+6 Resfriar AMBIENTE
+7 pegar REMEDIO
+8 entregar REMEDIO, MAE
+9 pegar MALAS
+10 descer ESCADA
+11 socar DONOKITNET

@@ -1,0 +1,27 @@
+15.07.26 - API'S
+api
+
+cruds  create read update delete
+   c reate
+   r ead
+   u pdate
+   d elete
+li s t
+
+chamadas - padronizar - extrair informação
+
+(dados) (processamento) (retorno de objeto gerenciado)
+
+3 locais trabalháveis com a API
+
+SHELL - "Própria linha de comando do python" (terminal onde pode introduzir comandos)
+(best) (kshell) (cmd) (terminal) (sh) (djangoadmin)
+
+View - "Porta de entrada do cliente" (frontend) (nossa API)
+
+
+
+
+
+
+

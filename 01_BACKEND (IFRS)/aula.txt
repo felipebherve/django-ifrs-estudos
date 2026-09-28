@@ -1,0 +1,38 @@
+
+
+
+pip install django
+
+import django
+django.VERSION
+
+django-admin
+
+django-admin startproject "gremio"
+web framework
+gremio> py manage.py runserver
+
+py manage.py makemigrations  (cria as migrações)
+py manage.py migrate (executa as migrações)
+py manage.py createsuperuser
+
+
+ctrlc para terminal
+
+
+---- primeira pasta web system
+	segunda pasta app
+
+manage.py ------ gerente do projeto
+asgi ---- conexões assíncronas (peço e vou fazer outra coisa)
+wsgi ---- síncrono (web socket)
+url - localizador de recursos uniformes (caminho)
+settings --- configurações
+
+
+settings
+LANGUAGE_CODE = 'pt-br'
+
+TIME_ZONE = 'America/Sao_Paulo'
+
+

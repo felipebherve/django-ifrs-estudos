@@ -1,0 +1,152 @@
+30.07.26 - web servisse
+
+baixar postman para testar
+
+WS - 
+	1 como o usuário irá acessar o URI
+
+	http://localhost:8000/ "o URI vem aqui"
+	http://localhost:8000/API/saudacao/
+
+	Padrão para restframework terminar sempre com a /
+
+importando as urls,
+	criar um novo app e criar um arquivo .py com o nome do app (no caso api)
+dentro da urls.py da pasta que tem o manage.py>>>
+___________________________________________________________
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
+]
+____________________________________________________________
+------------
+
+Agora dentro do arquivo urls.py dentro do aplicativo criado:
+
+___________________________________________________________
+from django.contrib import admin
+from django.urls import path
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/', saudacao, 
+         name='saudacao_funcao')
+]
+___________________________________________________________
+------------
+
+agora criar a view "responsável por processar a requisição do usuário" quando o usuário chamar api>funcao>saudação
+então apagamos o view criado pela própria função no terminal py manage.py startapp api
+criar uma nova pasta dentro do app api
+nomear como "views"
+criar um arquivo dentro chamado "__init__.py" (caso já não tenha sido criado)
+criar um arquivo dentro chamado "estaticas.py" 
+
+" usuário >>>>>> request >>>>> WS
+  usuário <<<<<< response <<<< WS
+
+api/views/estatisticas.py__________________________________
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+
+@api_view(['GET'])
+def saudacao(request):
+    return Response('Olá Visitante!')
+___________________________________________________________
+------------
+
+
+agora conectar a uri a view
+
+api/urls.py_______________________________________________
+from django.contrib import admin
+from django.urls import path
+from api.views import saudação ***********
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/', saudacao, 
+         name='saudacao_funcao')
+]
+___________________________________________________________
+------------
+
+dentro do init que está dentro da views
+
+api/views/__init__.py_______________________________________________
+from .estaticas import*
+___________________________________________________________
+------------
+
+IMPORTANDO COM CLASSE
+
+api/urls.py_______________________________________________
+from django.contrib import admin
+from django.urls import path
+from api.views import saudacao, SaudacaoService
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/', saudacao, name='saudacao_funcao'),
+    path('classe/saudacao/', SaudacaoService.as_view(), name='saudacao_classe')
+]
+___________________________________________________________
+------------
+
+
+dentro do estáticas.py
+
+api/views/estáticas.py_______________________________________________
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+
+
+@api_view(['GET'])
+def saudacao(request):
+    return Response('Olá Visitante!')
+
+
+class SaudacaoService(APIView):
+    def get(self,request):
+        return Response('Olá visitante com classe!')
+___________________________________________________________
+------------
+
+operador diamante, quando quer passar o nome do usuário
+
+api/urls.py_______________________________________________
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/<str:nome_pessoa>/', saudacao, name='saudacao_funcao'),
+    path('classe/saudacao/<str:nome_pessoa>/', SaudacaoService.as_view(), name='saudacao_classe')
+]
+
+___________________________________________________________
+------------
+
+
+linkando para receber em estáticas.py
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+Aula 12.08.26
+
+futuro.digital@ifrs.edu.br
+
+
+py-m pip install django (caso não encontre o pip)
+pip install django
+pip install Django==6.0
+pip install djangorestframework
+
+
+
+	Persistencia			Sem Persistência
+1	Model				N/A
+2	Manager				N/A
+3	Serializer			Serializer
+4	URL/URI				URL/URI
+5	mixins/Classes Auxiliares	Mixins/Classes Auxiliares
+6	Views				Views
+
+
+WebSystem (WS)
+para sistema modular deve-se separar por funcionalidades
+
+
+Criar o CRUDS de alguma entidade	Mais simples
+Create ----------- Post			4º
+Reat ------------- Get			1º
+Update ----------- Put/Patch		3º
+Delete ----------- Delete		2º
+liSt ------------- get/post		4º

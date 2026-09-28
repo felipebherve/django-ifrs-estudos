@@ -1,0 +1,179 @@
+Aula 3 - 25/03/2026
+
+python : TIPAGEM FORTE
+
+imprimir - print() 
+ler 	 - input() 'SEMPRE RETORNA STR'
+para mudar de str o input: idade = int(input('Digite sua idade.'))
+
+Tipos - Casting	 
+int	 - números inteiros (integer)
+float	 - números decimais (42.01)
+str	 - "string"
+bool	 - True, False
+
+{
+antes
+imprimir 'Digite sua idade'
+ler idade
+
+agora
+idade = input('Digite sua idade.') correção idade = int(input('Digite sua idade.'))
+}
+
+Tipagem dinâmica: A minha variável pode iniciar com um tipo e depois virar outro.
+instanciação == contexto
+ex: 
+nome = ""	- str
+nome = 0	- int
+nome = 0.0	- float
+nome = True	- bool
+
+ou casting
+bool(nome)
+str(nome)
+
+Ex. numeros
+a = int('10')	 V
+a = int('10.1')	 F
+a = int(10.1)	 V (mas retorna apenas 10)
+a = float('10.1')V
+a = float('10')	 V
+
+Ex. Boolean
+A = Boll('verdadeiro') 	- True
+a = Boll('falso')	- True
+a = Boll('False')	- True
+a = Boll('0')		- True
+a = Boll('')		- False
+a = Boll(0)		- False
+a = Boll()		- False
+
+cmd - py
+Linux/apple - python3
+
+python:
+# comentario
+clear
+type()
+dir() 'lista tipos'
+help()
+print()
+input()
+
+
+soma
+>>> 2 + 2
+4
+>>> a = 2+2
+>>> a
+4
+>>> type(a)
+<class 'int'>
+
+subtração
+>>> a = 2-2
+>>> a
+0
+>>> type(a)
+<class 'int'>
+
+multiplicação
+>>> a = 2*2
+>>> a
+4
+>>> type(a)
+<class 'int'>
+
+multiplicação com decimal
+>>> a = 2*2.0
+>>> a
+4.0
+>>> type(a)
+<class 'float'>
+>>> a = 2/2
+>>> a
+1.0
+>>> type(a)
+<class 'float'>
+
+divisão inteira
+>>> a = 2 // 2.0
+>>> a
+1.0
+>>> a=2//2
+>>> a
+1
+>>> type(a)
+<class 'int'>
+
+bool
+>>> a= True
+>>> type(a)
+<class 'bool'>
+>>> a= False
+>>> type(a)
+<class 'bool'>
+
+name error (cahamr variável sem existir)
+>>> b
+Traceback (most recent call last):
+  File "<python-input-27>", line 1, in <module>
+    b
+NameError: name 'b' is not defined
+
+Syntax error
+>>> b %
+  File "<python-input-28>", line 1
+    b %
+       ^
+SyntaxError: invalid syntax
+
+
+atribute error:
+>>> ''.ricardo()
+Traceback (most recent call last):
+  File "<python-input-29>", line 1, in <module>
+    ''.ricardo()
+    ^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'ricardo'
+
+
+ERRO DE VALOR
+>>> int('10.1')
+Traceback (most recent call last):
+  File "<python-input-30>", line 1, in <module>
+    int('10.1')
+    ~~~^^^^^^^^
+ValueError: invalid literal for int() with base 10: '10.1'
+
+
+ERRO DE TIPO:
+>>> 10+ ''
+Traceback (most recent call last):
+  File "<python-input-31>", line 1, in <module>
+    10+ ''
+    ~~^~~~
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+EX2 ERRO DE TIPO
+>>> 10+'10'
+Traceback (most recent call last):
+  File "<python-input-33>", line 1, in <module>
+    10+'10'
+    ~~^~~~~
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+ERRO DE INDENTAÇÃO
+>>> a
+False
+>>>  a
+  File "<python-input-39>", line 1
+    a
+IndentationError: unexpected indent
+
+
+
+ids
+vscode
+pycharm

@@ -1,0 +1,47 @@
+Aula 6 - 08.04.2026
+
+if else
+
+1 - negação 		not	F=V	V=F
+2 - conjunção 		and 	F.F=F	F.V=F	V.F=F	V.V=V
+3 - diskunção inclusiva 	or  	F.F=F	F.V=V	V.F=V	V.V=V
+4 - disjunção exclusiva	^	F.F=F	F.V=V	V.F=V	V.V=F
+
+	True ^ False or True and notFalse
+1 - notFalse = True
+2 - True and True = True
+3 - False or True = True
+4 - True ^ True = False
+
+
+if media >= 7.0
+	print("Aluno Aprovado")
+else:
+	print("Aluno Reprovado")
+
+if	var	condição:
+	print
+elif 	var	condição:
+	print
+elif	var	condição:
+	print
+else:
+	print()
+
+match variável
+	case x | X:
+		print()
+	case z | Z:
+		print()
+	case _:
+		print()
+
+match time coração:
+	case "Grêmio" | "grêmio":
+		prin...
+	case valor if valor in ("Grêmio", "grêmio")
+
+case 0|1|2|3|4|5|...|100:
+case x if x>=0 and x<=100
+case x if x in range(0,101)
+

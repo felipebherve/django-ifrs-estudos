@@ -1,0 +1,43 @@
+Aula 29.07.26
+
+usuário <<<<<<<>>>>>>> Web Systen (back end) 
+			\/ \/ \/ /\ /\ /\  (API)
+			Front end (system)
+
+Web System 
+App
+App Principal
+
+
+web Services != RMI
+
+Rest
+
+api - react, angular, android stk, SWIFT, (interfaces finais) 
+
+
+SOA - Arquitetura orientada a serviços
+
+UDDI - repositório
+
+WSDL - documento que migra os dados
+
+
+pip install djangorestframework
+
+no settings adicionar antes do app
+
+-------------------------------
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',  **adicionado
+    'rest_framework.authtoken', **adicionado
+    'aula'
+]
+
+____________________________________

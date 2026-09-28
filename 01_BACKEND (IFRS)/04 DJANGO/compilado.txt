@@ -1,0 +1,832 @@
+06.08.26  - exercício django
+
+WS Calcular valor do frete
+URI api/calcular/frete/
+
+requisição
+json:
+{
+"peso":10.5,
+"regiao_origem":"SUL",
+"regiao_destino":"NORDESTE
+}
+
+
+resposta
+json:  >>>> BODY RAW JSON
+{
+"peso":10.5,
+"regiao_origem":"SUL",
+"regiao_destino":"NORDESTE",
+"valor base":10.00,
+"adicional_peso":20.00,
+"adicional região":50.00,
+"valor total":80.00
+}
+
+
+peso encomenda			adicional
+até 1kg				00.00
+acima de 01kg até 05kg		05.00
+acima de 05kg até 10kg		10.00
+acima de 10kg até 20kg		20.00
+acima de 20kg			35.00 (a cada 10kg)
+
+
+
+valor base depende da combinação entre região origem/destino:
+
+situação da rota							valor base
+mesmo O/D       ------------------------------------------------------  10.00
+O:SUL D:SUDESTE ------------------------------------------------------  15.00
+CENTRO_OESTE com SUL E SUDESTE  --------------------------------------  20.00
+NORTE/NORDESTE/CENTRO_OESTE  -----------------------------------------  30.00
+Demais combinações de regiões ----------------------------------------  50.00
+
+
+quando for persistido
+1 model
+2 manager
+------------ /\ persistido "quando precisa salvar as informações"
+3 serializer (arquivo json)
+4 url
+5 view
+
+
+
+postman:
+http://127.0.0.1:8000/api/calcular/frete/
+body > raw > JSON
+{
+    "peso":10.5,
+    "regiao_origem":"SUL",
+    "regiao_destino":"NORDESTE"
+}
+
+
+15.07.26 - API'S
+api
+
+cruds  create read update delete
+   c reate
+   r ead
+   u pdate
+   d elete
+li s t
+
+chamadas - padronizar - extrair informação
+
+(dados) (processamento) (retorno de objeto gerenciado)
+
+3 locais trabalháveis com a API
+
+SHELL - "Própria linha de comando do python" (terminal onde pode introduzir comandos)
+(best) (kshell) (cmd) (terminal) (sh) (djangoadmin)
+
+View - "Porta de entrada do cliente" (frontend) (nossa API)
+
+
+
+30.07.26 - web servisse
+
+baixar postman para testar
+
+WS - 
+	1 como o usuário irá acessar o URI
+
+	http://localhost:8000/ "o URI vem aqui"
+	http://localhost:8000/API/saudacao/
+
+	Padrão para restframework terminar sempre com a /
+
+importando as urls,
+	criar um novo app e criar um arquivo .py com o nome do app (no caso api)
+dentro da urls.py da pasta que tem o manage.py>>>
+___________________________________________________________
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
+]
+____________________________________________________________
+------------
+
+Agora dentro do arquivo urls.py dentro do aplicativo criado:
+
+___________________________________________________________
+from django.contrib import admin
+from django.urls import path
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/', saudacao, 
+         name='saudacao_funcao')
+]
+___________________________________________________________
+------------
+
+agora criar a view "responsável por processar a requisição do usuário" quando o usuário chamar api>funcao>saudação
+então apagamos o view criado pela própria função no terminal py manage.py startapp api
+criar uma nova pasta dentro do app api
+nomear como "views"
+criar um arquivo dentro chamado "__init__.py" (caso já não tenha sido criado)
+criar um arquivo dentro chamado "estaticas.py" 
+
+" usuário >>>>>> request >>>>> WS
+  usuário <<<<<< response <<<< WS
+
+api/views/estatisticas.py__________________________________
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+
+@api_view(['GET'])
+def saudacao(request):
+    return Response('Olá Visitante!')
+___________________________________________________________
+------------
+
+
+agora conectar a uri a view
+
+api/urls.py_______________________________________________
+from django.contrib import admin
+from django.urls import path
+from api.views import saudação ***********
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/', saudacao, 
+         name='saudacao_funcao')
+]
+___________________________________________________________
+------------
+
+dentro do init que está dentro da views
+
+api/views/__init__.py_______________________________________________
+from .estaticas import*
+___________________________________________________________
+------------
+
+IMPORTANDO COM CLASSE
+
+api/urls.py_______________________________________________
+from django.contrib import admin
+from django.urls import path
+from api.views import saudacao, SaudacaoService
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/', saudacao, name='saudacao_funcao'),
+    path('classe/saudacao/', SaudacaoService.as_view(), name='saudacao_classe')
+]
+___________________________________________________________
+------------
+
+
+dentro do estáticas.py
+
+api/views/estáticas.py_______________________________________________
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+
+
+@api_view(['GET'])
+def saudacao(request):
+    return Response('Olá Visitante!')
+
+
+class SaudacaoService(APIView):
+    def get(self,request):
+        return Response('Olá visitante com classe!')
+___________________________________________________________
+------------
+
+operador diamante, quando quer passar o nome do usuário
+
+api/urls.py_______________________________________________
+
+app_name = 'api'
+
+urlpatterns = [
+    path('funcao/saudacao/<str:nome_pessoa>/', saudacao, name='saudacao_funcao'),
+    path('classe/saudacao/<str:nome_pessoa>/', SaudacaoService.as_view(), name='saudacao_classe')
+]
+
+___________________________________________________________
+------------
+
+
+linkando para receber em estáticas.py
+
+
+
+Aula 12.08.26
+
+futuro.digital@ifrs.edu.br
+
+
+py-m pip install django (caso não encontre o pip)
+pip install django
+pip install Django==6.0
+pip install djangorestframework
+
+
+
+	Persistencia			Sem Persistência
+1	Model				N/A
+2	Manager				N/A
+3	Serializer			Serializer
+4	URL/URI				URL/URI
+5	mixins/Classes Auxiliares	Mixins/Classes Auxiliares
+6	Views				Views
+
+
+WebSystem (WS)
+para sistema modular deve-se separar por funcionalidades
+
+
+Criar o CRUDS de alguma entidade	Mais simples
+Create ----------- Post			4º
+Reat ------------- Get			1º
+Update ----------- Put/Patch		3º
+Delete ----------- Delete		2º
+liSt ------------- get/post		4º
+
+
+Aula 13.08.26 - aula final
+
+ws = websystem
+C
+R
+U
+D
+S
+
+1º	MODEL
+2º	MANAGER
+3º	SERIALIZER
+4º	URL/URI
+5º	CLASSES AUXILIARES
+6º	VIEW
+
+Aula 29.07.26
+
+usuário <<<<<<<>>>>>>> Web Systen (back end) 
+			\/ \/ \/ /\ /\ /\  (API)
+			Front end (system)
+
+Web System 
+App
+App Principal
+
+
+web Services != RMI
+
+Rest
+
+api - react, angular, android stk, SWIFT, (interfaces finais) 
+
+
+SOA - Arquitetura orientada a serviços
+
+UDDI - repositório
+
+WSDL - documento que migra os dados
+
+
+pip install djangorestframework
+
+no settings adicionar antes do app
+
+-------------------------------
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',  **adicionado
+    'rest_framework.authtoken', **adicionado
+    'aula'
+]
+
+____________________________________
+
+15.07.26 - API'S
+api
+
+cruds  create read update delete
+   c reate
+   r ead
+   u pdate
+   d elete
+li s t
+
+chamadas - padronizar - extrair informação
+
+(dados) (processamento) (retorno de objeto gerenciado)
+
+3 locais trabalháveis com a API
+
+SHELL - "Própria linha de comando do python" (terminal onde pode introduzir comandos)
+(best) (kshell) (cmd) (terminal) (sh) (djangoadmin)
+py manage.py shell
+python3 manage.py shell
+testes rápidos
+
+View - "Porta de entrada do cliente" (frontend) (nossa API) (restrições)
+
+scripts - 
+funcionalidades iniciais
+
+no terminal
+(pk = primary key
+caso nunca criada chave primaria é o id)
+
+Terminal  1
+py manage.py runserver
+
+
+Terminal 2
+py manage.py shell 
+from aula.models import Pessoa
+dir(Pessoa)
+help(Pessoa.save)
+sergio = Pessoa()
+sergio.full_clean()
+sergio.nome = 'a'
+(sergio ainda não é um objeto gerenciado ou persistido)
+
+(sergio só existe enquanto o terminal está aberto)
+
+para criar o objeto sergio no django precisa usar o método:
+save()      //////////    mas antes usar o full_clean()
+
+
+from datetime import date
+sergio.data_nascimento = date(200, 7, 9)
+sergio.cpf = "12345678901"
+sergio.nome = "Sergio Rodriguez"
+sergio.full_clean()
+sergio.save()
+((((( AGORA SERGIO É UM OBJETO GERENCIADO ))))))
+
+sergio.nome = 'Thiago Costa'
+sergio.full_clean()
+sergio.save()         ----------------------> "atualizar o nome do sergio"
+
+((( USANDO A MESMA VARIÁVEL PODEMOS CRIAR UM NOVO OBJETO GERENCIÁVEL )))
+
+sergio = Pessoa()
+sergio.nome = 'Sergio Rodriguez'
+sergio.cpf = '012345678901'
+sergio.data_nascimento = date(200,7,9)
+sergio.full_clean()
+sergio.save()
+
+
+agora para ler os dados que já estavam salvos no sistema
+
+get() - só pode retornar um objeto
+sergio = Pessoa.objects.get(cpf='0')
+sergio = Pessoa.objects.get(nome='Sergio Rodriguez')
+
+
+((para saber quantos objetos gerenciados)
+sergio.pk ----------------------------> mostra quantos objetos gerenciáveis tem em sergio
+
+sergio.delete() -----------------------> apaga o objetogerenciavel selecionado
+
+
+
+
+
+dentro da pasta do projeto (deve ficar embaixo do manage.py)
+
+script.py
+-------------------------------------------------------------------------
+import contextlib, io  # importanto a bibliotecas
+from manage import *
+
+# define que a saída será o terminal
+saida = io.StringIO  # a saída é do tipo string
+
+
+with contextlib.redirect_stdout(saida): # pega a biblioteca de contexto e redireciona a saída padrão para saída
+	main() #com essa definição executa o main
+-------------------------------------------------------------------------
+
+
+
+
+
+
+________________________________________________________
+import contextlib, io
+from manage import *
+
+# define que a saída será o terminal
+saida = io.StringIO()
+
+with contextlib.redirect_stdout(saida):
+    main()
+
+
+# a partir daqui podemos utilizar como no terminal
+
+from aula.models import Pessoa
+from datetime import date
+
+sergio = Pessoa(
+    nome = 'Sergio Anubis',
+    cpf = '01234567890',
+    data_nascimento = date(1990, 12, 31)
+)
+
+sergio.full_clean()
+sergio.save()
+
+acosta = Pessoa(
+    nome = 'Acosta Silva',
+    cpf = "00000000000",
+    data_nascimento = date(1980,5,15)
+)
+
+acosta.full_clean()
+acosta.save()
+_______________________________________________________
+
+
+no terminal abrir pasta onde está o script e digitar
+
+py script.py
+
+aula 25.07.26
+
+criar projeto, custom
+abrir terminal
+pip install django
+import django
+django.VERSION
+
+django-admin
+
+IMPORTE AS PASTAS DO DJANGO
+
+django-admin startproject "gremio"
+
+web framework
+
+(NA PASTA CRIADA)-----------------------------------------
+py manage.py makemigrations  (cria as migrações)
+py manage.py migrate (executa as migrações)
+py manage.py createsuperuser
+
+gremio> py manage.py runserver
+
+
+ctrlc para terminal
+
+
+---- primeira pasta web system
+	segunda pasta app
+
+manage.py ------ gerente do projeto
+asgi ---- conexões assíncronas (peço e vou fazer outra coisa)
+wsgi ---- síncrono (web socket)
+url - localizador de recursos uniformes (caminho)
+settings --- configurações
+
+NO ARQUIVO SETTINGS ALTERAR ------------------------------
+settings
+LANGUAGE_CODE = 'pt-br'
+
+TIME_ZONE = 'America/Sao_Paulo'
+
+
+FERRAMENTA DE GERENCIAMENTO DO PROJETO
+
+CRIANDO AS FUNCIONALIDADES ------------------- APP
+
+python3 manage.py startapp aula (NO MAC)
+py manage.py startapp clube    <<<<<<<<<<< CRIANDO APP
+
+NO SETTINGS
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'clube'  			<<<<<<<<<<<< COLOCAR O NOME DO APP
+]
+
+
+APAGAR >> models.py em clube
+
+>>new>python package
+CRIAR NOVO >> models dentro de clube
+criar python file base.py
+
+dentro de base
+""""""""""""""""""""""""""""""""""
+from django.db import models
+
+
+class BaseModel(models.Model):
+    class Meta:
+        abstract = True
+        app_label = 'clube'
+""""""""""""""""""""""""""""""""""
+
+dentro do __init__.py (criar arquivo dentro de models)
+
+'''''''''''''''''''''''''''''''''
+from.base import *
+'''''''''''''''''''''''''''''''''
+
+NA PASTA MODELS, NOVO ARQUIVO.PY
+escolhido jogador.py
+''''''''''''''''''''''''''''''''
+from from clube import BaseModel
+
+class Jogador(BaseModel)
+''''''''''''''''''''''''''''''''
+
+framework ORM mapeamento de classe para registro no banco
+
+NO __INIT__.PY (do models)
+adicionar 
+'''''''''''''''''
+from  .jogador import *
+'''''''''''''''''''''
+
+no jogador.py  (criando os aributos da classe)
+''''''''''''''''''''''''''''''''
+from clube import BaseModel
+
+from django.db import models
+
+class Jogador(BaseModel)
+    titulo = models.CharField(max_length=100,)    
+***** toda classe deve ser criada aqui, agora para dizer que é uma string deve-se usar models.CharField(max_length= quantidade de caracteres desejados)
+''''''''''''''''''''''''''''''''
+
+
+
+
+
+em admin.py
+
+__________________________________________________
+from django.contrib import admin
+from clube.models import Jogador, Carro, Veiculo
+
+# Register your models here.
+admin.site.register(Jogador)
+admin.site.register(Carro)
+admin.site.register(Veiculo)
+__________________________________________________
+
+no terminal ---------------------------
+py manage.py makemigrations
+(+ Create model Jogador)
+py manage.py migrate
+Applying clube.0001_initial... OK
+py manage.py runserver
+___________________________________________
+
+
+
+no jogador.py (adicionando validadores)
+----------------------------------------------------
+from django.core.validators import MinLengthValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)])
+
+    def __str__(self):
+        return self.titulo
+---------------------------------------------------
+
+no terminal
+______________________________
+py manage.py makemigrations
+py manage.py migration
+py manage.py runserver     
+_____________________________
+no jofador.py
+'''''''''''''''''''''''''''''''
+from django.core.validators import MinLengthValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)],
+                              verbose_name='Titulo do jogador',
+                              help_text='O titulo deve conter pelomenos 5 e maximo 100'
+                              )
+    descricao = models.CharField(max_length= 5000,
+                                 blank=True, null=True,  #deixar a variável opcional
+                                 validators=[MinLengthValidator(10)],
+                                 verbose_name='Descrição',
+                                 help_text='Informe a descrição do exemplo com no minimo 10 caracteres e maximo 5000, essa descrição ficará disponível para o usuário.')
+
+    def __str__(self):
+        return self.titulo
+'''''''''''''''''''''''''''''''''''''''
+no terminal
+______________________________
+py manage.py makemigrations
+py manage.py migration
+py manage.py runserver     
+_____________________________
+
+alteração no jogador.py
+'''''''''''''''''''''''''''''''
+from django.core.validators import MinLengthValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)],
+                              verbose_name='Titulo do jogador',
+                              help_text='O titulo deve conter pelomenos 5 e maximo 100'
+                              )
+    descricao = models.TextField(max_length= 5000,
+                                 blank=True, null=True,  #deixar a variável opcional
+                                 validators=[MinLengthValidator(10)],
+                                 verbose_name='Descrição',
+                                 help_text='(OPCIONAL) Informe a descrição do exemplo com no minimo 10 caracteres e maximo 5000, essa descrição ficará disponível para o usuário.')
+
+    def __str__(self):
+        return self.titulo
+'''''''''''''''''''''''''''''''''''''''
+
+adição no jogador.py
+'''''''''''''''''''''''''''''''''''''''''
+from wsgiref.validate import validator
+
+from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator
+from clube.models import BaseModel
+from django.db import models
+
+class Jogador(BaseModel):
+    titulo = models.CharField(max_length=100,
+                              validators=[MinLengthValidator(5)],
+                              verbose_name='Titulo do jogador',
+                              help_text='O titulo deve conter pelomenos 5 e maximo 100'
+                              )
+
+    descricao = models.TextField(max_length= 5000,
+                                 blank=True, null=True,  #deixar a variável opcional
+                                 validators=[MinLengthValidator(10)],
+                                 verbose_name='🧛Descrição🧛',
+                                 help_text='(OPCIONAL) Informe a descrição do exemplo com no minimo 10 caracteres e maximo 5000, essa descrição ficará disponível para o usuário.')
+
+    qualidade = models.IntegerField(default=0,
+                                    validators=[MinValueValidator(0), MaxValueValidator(100)],
+                                    verbose_name='Qualidade',
+                                    help_text='A qualidade do exemplo deve estar entre 0 e 100'
+                                    )
+    def __str__(self):
+        return self.titulo
+
+    class Meta:
+        verbose_name_plural = '🤾🏻‍♂️Jogadores🤾🏻‍♂️'
+''''''''''''''''''''''''''''''''''''''''
+
+
+para modificar o plural 
+_______________________________________
+    class Meta:
+        verbose_name_plural = "Passagens"
+________________________________________
+
+
+
+
+
+
+
+
+
+apagando arquivos do banco (apenas caso você apague o db.sqlite3 sem querer):
+deletar >>>>>>> db.sqlite3
+deletar >>>>>>> pasta migrations
+
+no terminal
+_______________
+py manage.py makemigrations clube
+py manage.py migrate
+py manage.py createsuperuser
+________________
+
+
+
+adicionando um novo objeto:
+criar o arquivo py em models
+importar no __init__
+importar no admin
+
+
+py manage.py makemigrations
+py manage.py migrate
+py manage.py runserver
+
+
+Criando escolhas de opções:
+criar pasta enumerations
+
+exemplo:
+criar arquivo py com o nome das opções
+---------------------------------------------
+from django.db import models
+
+class Cor(models.IntegerChoices):
+    AZUL = 1, 'Azul'
+    PRETO = 2, 'Preto'
+    BRANCO = 3, 'Branco'
+---------------------------------------------
+
+no arquivo py dentro de models
+ex carro.py
+--------------------------------------------
+from clube.enumerations import Marca, Cor
+--------------------------------------------
+
+
+criando validadores
+
+criar pasta dentro da pasta do app validators
+criar arquivo __init__.py
+criar arquivo functions.py
+
+
+
+
+
+https://docs.djangoproject.com/en/6.0/ref/models/fields/
+
+
+relacionamentos 01.07.2026
+
+configuração de pluguins para colocar automaticamente as importações no vscode
+python path configuração da IDE
+python interpreter
+ctrl shift p >>  python select interpretor
+No django só existe relacionamentos bidirecionais
+
+A --> B
+A <-- B
+A <-> B
+A --- B
+
+1:1  apenas um objeto de um pode ter um objeto de outro (um pra um)
+1:N  um pra muitos e muitos pra um (um pai pode ter muitos filhos mas os filhos só tem um pai)
+N:1
+N:N muitos registros para um lado e para outro
+
+
+1:0.1 pessoa <> passaporte
+o passaporte é o lado forte porque obrigatoriamente para um passaporte deve existir uma pessoa
+agora para cada pessoa não necessariamente deve ter o passaporte
+
+1:N Reportes <-> Artigo
+um repórter pode ter vários artigos
+um artigo só pode ter um reportes
+no caso o artigo é o lado forte por ser obrigatório ter um reporter
+
+
+no lado forte importar o lado fraco e adicionar:
+ex.:
+
+_______________________________________
+    pessoa = models.OneToOneField(
+        Pessoa, 
+        on_delete=models.CASCADE,
+        help_text='Selecione o titular do passaporte',
+        verbose_name='Dono do Passaporte'
+    )
+______________________________________
+
+
+

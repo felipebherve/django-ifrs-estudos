@@ -1,0 +1,300 @@
+Aula - 2 19/03/26
+Cheat Sheet/Dicionário/Sintaxe
+
+imprimir: Saída de dados Console.log()
+ler: Entrada de dados Var, Let, Const
+Adição, - Sutração, / Divisão, * Multiplicação, ** Potencialização, % Resto.
+< Menor Quê, > Maior Quê, >= Maior ou igual a, <= Menor ou igual a, != Diferente de, = Atribuição, == Iugal à, === Extremamente igual a.
+(,) Separador de elementos
+Tipos de dados
+Número: 1 2 3 4
+Boleano/Lógico: Verdadeiro ou Falso
+String: Texto
+
+O que um pc precisa para funcionar?
+Entrada de dados (Adquirir informação).
+Processamento de dados (O que é feito com essas informações).
+Saída de dados (Fornecer ao mundo exterior).
+
+~~~~~~~~~~~~~~~~ Exemplo 1 ~~~~~~~~~~~~~~~~
+ 
+Programa: Somar dois Números
+
+Pressuposto:
+
+ E:(Entrada de dados): dizer quais são as variaveis
+ P:(Processamento) somar os numeros e armazenar o resultado
+ S:(Saida) Mostrar resultado 
+
+Contexto:
+
+1. Número: Primeiro, Segundo, Resultado
+2. Texto: "Programa para somar dois números.", "Qual é o primeiro número?", "Qual é o segundo número?", "O Resultado da soma dos dois valores é:"
+3. Lógico:
+3. 
+Instruções:
+
+	Entrada de dados:
+
+1. Imprimir "Programa para somar dois números."
+2. Imprimir "Qual é o primeiro número?"
+3. Ler Primeiro
+4. Imprimir "Qual é o segundo número?"
+5. Ler Segundo
+   	Processamento de dados:
+6. Resultado = Pimeiro + Segundo
+   	Saida de dados:
+7. Imprimir = "O Resultado da soma dos dois valores é:"
+
+
+
+----- TESTE DE MESA -----
+
+Programa
+
+Primeiro = 5
+
+Segundo = 4
+
+Resultado = 9
+
+Área de usuario
+
+1. Programa para somar dois números.
+2. Qual é o primeiro número?
+3. 5 (ação do usuário ENTER)
+4. Qual é o segundo número?
+5. 4 (ação do usuário ENTER)
+6. O Resultado da soma dos dois valores é:
+7. 9
+
+~~~~~~~~~~~~~~~~ Exemplo 2 ~~~~~~~~~~~~~~~~
+
+Programa: Multiplicar X, Y, Z
+Pressuposto: Mostrar o produto entre 3 números fornecidos
+Entrada de dados: 
+	Número: Primeiro, Segundo, Terceiro, Resultado
+	Texto: "Programa para multiplicar tres numeros.", "Qual é o primeiro numero?", "Qual o segundo numero?", "Qual o terceiro numero?", "O resultado da multiplicação dos 3 é:"
+	Lógico:
+
+Instruções:
+	ENTRADA DE DADOS
+1 - Imprimir "Programa para multiplicar tres numeros."
+2 - Imprimir "Qual o primeiro numero?"
+3 - Ler Primeiro
+4 - Imprimir "Qual o segundo numero?"
+5 - Ler Segundo
+6 - Imprimir "Qual o terceiro numero?"
+7 - Ler Terceiro
+	PROCESSAMENTO
+8 - Resultado = Primeiro*Segundo*Terceiro
+	SAIDA DE DADOS
+9 - Imprimir "O resultado da multiplicação dos 3 é:"
+10 - Imprimir Resultado
+
+----- TESTE DE MESA -----
+
+Programa
+
+Primeiro = 5
+
+Segundo = 4
+
+Terceiro = 1
+
+Resultado = 20
+
+**Área de usuario**
+
+1. Programa para multiplicar tres numeros.
+2. Qual é o primeiro número?
+3. 5 (ação do usuário ENTER)
+4. Qual é o segundo número?
+5. 4 (ação do usuário ENTER)
+6. Qual o terceiro numero?
+7. 1 (ação do usuário ENTER)
+8. O resultado da multiplicação dos 3 é:
+10. 20
+
+~~~~~~~~~~~~~~~~ Exemplo 3 ~~~~~~~~~~~~~~~~
+
+Programa:Calcular a média de um aluno, Existem 5 notas durante o semestre Media aritimetica
+Pressuposto:
+Entrada de dados:
+Nota1, Nota2, Nota3, Nota4, Nota5, MediaA, somanotas
+Instruções:
+
+	ENTRADA DE DADOS
+1. Imrpimir "Este programa imprime a media do aluno"
+2. Imprimir "Qual foi a primeira nota?"
+3. ler Nota1
+4. Imprimir "Qual foi a segunda nota?"
+5. ler Nota2
+6. Imprimir "Qual foi a terceira nota?"
+7. ler Nota3
+8. Imprimir "Qual foi a quarta nota?"
+9. ler Nota4
+10. Imprimir "Qual foi a quinta e ultima nota?"
+11. ler Nota5
+	PROCESSAMENTO
+12. somanotas = Nota1+Nota2+Nota3+Nota4+Nota5
+13. MediaA = somanotas/5
+	SAIDA DE DADOS
+14. Imprimir "A sua media final e:"
+15. MediaA
+
+----- TESTE DE MESA -----
+
+Programa
+Nota1 = 5
+Nota2 = 10
+Nota3 = 8
+Nota4 = 3
+Nota5 = 9
+somanotas = 35
+MediaA = 7
+
+**Área de usuario**
+
+1. Este programa imprime a media do aluno
+2. Qual foi a primeira nota?
+3. 5 (ENTER)
+4. Qual foi a segunda nota?
+5. 10
+6. Qual foi a terceira nota?
+7. 8
+8. Qual foi a quarta nota?
+10. 3
+11. Qual foi a quinta e ultima nota?
+12. 9
+13. A sua media final e:
+14. 7
+
+~~~~~~~~~~~~~~~~ Exemplo 4 ~~~~~~~~~~~~~~~~
+
+Programa: Criar um programa que converte o valor de Reais para dolar
+Pressuposto: 
+Entrada de dados: real, taxa_dolar, resultado
+Instruções:
+
+	ENTRADA DE DADOS
+1. imprimir "Esse programa converte o real em dólar"
+2. imprimir "Qual o valor do real que quer converter para dólar?"
+3. ler real
+4. imprimir "Qual o valor da taxa atual do dólar?"
+5. ler taxa_dolar
+	PROCESSAMENTO DE DADOS
+6. resultado = real/taxa_dolar
+	SAIDA DE DADOS
+7. imprimir "o valor do dólar com a taxa passada é:"
+8. imprimir resultado
+
+----- TESTE DE MESA -----
+
+	programa
+
+real = 100
+taxa_dolar = 2,50
+resultado = 40
+
+	área do usuário
+1. Esse programa converte o real em dólar
+2. Qual o valor do real que quer converter para dólar?
+3. 100 (ENTER)
+4. Qual o valor da taxa atual do dólar?
+5. 2,50 (ENTER)
+6. o valor do dólar com a taxa passada é:
+7. 40
+
+~~~~~~~~~~~~~~~~ Exemplo 5 ~~~~~~~~~~~~~~~~
+
+Programa: Criar um programa que converte o valor de Fahreinheit para celcius
+Pressuposto: 
+Entrada de dados: fahreinheit, celcios, 
+conversão:( c=(5*(f-32)/9) )
+x = Fahreinheit - 32
+y = x*5
+celcius = y/9
+
+Instruções:
+
+	ENTRADA DE DADOS
+1. imprimir " Esse programa converte o valor de Fahreinheit para Celcius "
+2. imprimir " Qual o valor de Fahreinheit? "
+3. ler fahreinheit
+	PROCESSAMENTO DE DADOS
+4. x = fahreinheit - 32
+5. y = x*5
+6. celcius = y/9
+	SAIDA DE DADOS
+7. imprimir "A temperatura passada em Fahreinheit em celcius fica:"
+8. imprimir celcius
+
+----- TESTE DE MESA -----
+
+	programa
+
+fahreinheit: 235
+x = 203
+y = 1015
+celcius = 112,78
+
+	área do usuário
+1. Esse programa converte o valor de Fahreinheit para Celcius
+2. Qual o valor de Fahreinheit?
+3. 235 (ENTER)
+4. A temperatura passada em Fahreinheit em celcius fica:
+5. 112,78
+
+~~~~~~~~~~~~~~~~ Exemplo 6 ~~~~~~~~~~~~~~~~
+
+Programa: Calcular o salario de um funcionario com base nas horas trabalhadas e no valor de cada hora. Considerar os descointos de 
+11% de inss, 
+2% de sindicato e 
+27,5% de IR
+Pressuposto: salario, salario_descontado, inss, sindicato, ir
+Instruções:
+
+	ENTRADA DE DADOS
+
+1  - imprimir 'Este programa calcula o valor final do salário descontado de INSS, Sindicato e IR'
+2  - imprimir 'Insira aqui o seu salário'
+3  - ler salario
+
+	SAIDA DE DADOS
+4  - inss = salario * 0.11
+5  - imprimir 'INSS:'
+6  - imprimir inss
+7  - sindicato = salario * 0.02
+8  - imprimir 'Sindicato:'
+9  - imprimir sindicato
+10 - ir = salario * 0,275
+11 - imprimir 'Imposto de Renda:'
+12 - imprimir ir
+13 - salario descontado = salario - ir - inss - sindicato
+14 - imprimir 'Seu salário líquido é:'
+15 - imprimir salario_descontado
+
+----- TESTE DE MESA -----
+	programa:
+
+salario 		= 1550
+inss 			= 170,5
+sindicato 		= 31
+ir 			= 426,25
+salario descontado 	= 922,25
+
+	área do usuário:
+1  - Este programa calcula o valor final do salário descontado de INSS, Sindicato e IR
+2  - Insira aqui o seu salário
+3  - 1550,0 (ENTER)
+4  - INSS:
+5  - 170,5
+6  - Sindicato:
+7  - 31
+8  - Imposto de Renda:
+9  - 426,25
+10 - Seu salário líquido é:
+11 - 922,25
+
+

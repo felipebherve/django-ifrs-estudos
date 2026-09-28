@@ -1,0 +1,40 @@
+Aula 8 - 07.05.2026
+
+Aula de listas e tuplas
+dir(variável) => diz quais funções podem ser executadas de acordo com o type da variável
+help(variável.metodo)
+
+tipos
+int
+float
+bool
+str (objeto iterável ou coleção)
+
+coleção				short-hand	função casting		características
+listas				[]			List			ordenada, repetição de valores, mutável
+tuplas				(,)			Tuple			ordenada, repetição de dados, imutável		
+dicionários			{k:v}			Dict			não ordenado, não repete chaves mas repete valores, mutável
+conjuntos			{}			Set			não ordenado, só tem valores e não os repete, mutável
+		
+
+nenhuma estrutura que não aceite receber um índice é que ela não é ordenada
+ponteiros quando criado uma lista e mudar ela ela sempre apontará para a lista inicial (porém se mudar a lista ela reescreve a lista inicial)
+
+
+lista dentro de lista
+
+aluno = ["zero", "um", "dois]
+alunos = [aluno, ["zero", "um","dois"]
+
+alunos[0][2] 
+retorno - "dois"
+----------------------------------------------------------------------------
+tupla tem que ter mais de dois elementos
+conjunto de dados, objeto iterável, orde
+
+tuplas = tuple(alunos)
+tuplas - retorno - ([["zero", "um", "dois], ["zero", "um","dois"]])
+----------------------------------------------------------------------------
+dicionários
+k = chave
+v = valor

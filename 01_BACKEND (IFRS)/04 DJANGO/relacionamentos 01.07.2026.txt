@@ -1,0 +1,43 @@
+relacionamentos 01.07.2026
+
+configuração de pluguins para colocar automaticamente as importações no vscode
+python path configuração da IDE
+python interpreter
+ctrl shift p >>  python select interpretor
+No django só existe relacionamentos bidirecionais
+
+A --> B
+A <-- B
+A <-> B
+A --- B
+
+1:1  apenas um objeto de um pode ter um objeto de outro (um pra um)
+1:N  um pra muitos e muitos pra um (um pai pode ter muitos filhos mas os filhos só tem um pai)
+N:1
+N:N muitos registros para um lado e para outro
+
+
+1:0.1 pessoa <> passaporte
+o passaporte é o lado forte porque obrigatoriamente para um passaporte deve existir uma pessoa
+agora para cada pessoa não necessariamente deve ter o passaporte
+
+1:N Reportes <-> Artigo
+um repórter pode ter vários artigos
+um artigo só pode ter um reportes
+no caso o artigo é o lado forte por ser obrigatório ter um reporter
+
+
+no lado forte importar o lado fraco e adicionar:
+ex.:
+
+_______________________________________
+    pessoa = models.OneToOneField(
+        Pessoa, 
+        on_delete=models.CASCADE,
+        help_text='Selecione o titular do passaporte',
+        verbose_name='Dono do Passaporte'
+    )
+______________________________________
+
+
+

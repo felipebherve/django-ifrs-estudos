@@ -1,0 +1,64 @@
+06.08.26  - exercício django
+
+WS Calcular valor do frete
+URI api/calcular/frete/
+
+requisição
+json:
+{
+"peso":10.5,
+"regiao_origem":"SUL",
+"regiao_destino":"NORDESTE
+}
+
+
+resposta
+json:  >>>> BODY RAW JSON
+{
+"peso":10.5,
+"regiao_origem":"SUL",
+"regiao_destino":"NORDESTE",
+"valor base":10.00,
+"adicional_peso":20.00,
+"adicional região":50.00,
+"valor total":80.00
+}
+
+
+peso encomenda			adicional
+até 1kg				00.00
+acima de 01kg até 05kg		05.00
+acima de 05kg até 10kg		10.00
+acima de 10kg até 20kg		20.00
+acima de 20kg			35.00 (a cada 10kg)
+
+
+
+valor base depende da combinação entre região origem/destino:
+
+situação da rota							valor base
+mesmo O/D       ------------------------------------------------------  10.00
+O:SUL D:SUDESTE ------------------------------------------------------  15.00
+CENTRO_OESTE com SUL E SUDESTE  --------------------------------------  20.00
+NORTE/NORDESTE/CENTRO_OESTE  -----------------------------------------  30.00
+Demais combinações de regiões ----------------------------------------  50.00
+
+
+quando for persistido
+1 model
+2 manager
+------------ /\ persistido "quando precisa salvar as informações"
+3 serializer (arquivo json)
+4 url
+5 view
+
+
+
+postman:
+http://127.0.0.1:8000/api/calcular/frete/
+body > raw > JSON
+{
+    "peso":10.5,
+    "regiao_origem":"SUL",
+    "regiao_destino":"NORDESTE"
+}
