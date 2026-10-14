@@ -2,6 +2,8 @@
 
 🇺🇸 English · 🇧🇷 [Português](README.pt-BR.md)
 
+🔗 **Portfolio:** this project and my others at [felipebherve.github.io](https://felipebherve.github.io/#projects).
+
 ## Where I was when I made this
 
 From **March to August 2026** I took the backend course offered by the **IFRS** (Instituto Federal do Rio Grande do Sul) together with **Instituto Hardware**, online. I completed it. It starts from "how to think about a problem" and ends with building REST APIs in Django. This is the course that gave me my first real backend skills.
